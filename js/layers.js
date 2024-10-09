@@ -5953,7 +5953,7 @@ addLayer("uv", {
         }
         player.uv.cool = Math.max(player.uv.cool-diff,0)
 
-        if (hasMilestone("uv", 1)) {
+        if (hasMilestone("uv", 1) && inChallenge("ct",32)) {
             player.uv.virus = player.uv.virus.add(tmp.uv.clickables[31].gain * 0.005 * diff)
             player.uv.virusTotal = player.uv.virusTotal.add(tmp.uv.clickables[31].gain * 0.005 * diff)
             player.uv.virusBest = player.uv.virusBest.max(player.uv.virus)
