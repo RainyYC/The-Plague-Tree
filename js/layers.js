@@ -5952,6 +5952,12 @@ addLayer("uv", {
             }
         }
         player.uv.cool = Math.max(player.uv.cool-diff,0)
+
+        if (hasMilestone("uv", 1)) {
+            player.uv.virus = player.uv.virus.add(round(tmp.uv.clickables[31].gain * 0.005 * diff))
+            player.uv.virusTotal = player.uv.virusTotal.add(round(tmp.uv.clickables[31].gain * 0.005 * diff))
+            player.uv.virusBest = player.uv.virusBest.max(player.uv.virus)
+        }
     },
     tooltip() {
         let dis = "Unvaxxed Layers"
@@ -6262,7 +6268,7 @@ addLayer("uv", {
     milestones: {
         0: {
             requirementDescription() {return "1 Total UnBoosted Virus (1)"},
-            effectDescription() {return "Keep 1st 4 rows of Main US upgrades, 1st 11 and 16th US milestones, 'UnRecover' cooldown is "+formatTime(30)+"."},
+            effectDescription() {return "Keep 1st 4 rows of Main US upgrades, 1st 11 and 16th US milestones, 'UnRecover' cooldown is "+formatTime(30)+".\nGain 0.5% of unboosted virus gain per second."},
             done() { return player.uv.virusTotal.gte(1) }
         },
         1: {
