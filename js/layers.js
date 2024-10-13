@@ -5957,6 +5957,7 @@ addLayer("uv", {
             player.uv.virus = player.uv.virus.add(tmp.uv.clickables[31].gain.mul(0.005 * diff))
             player.uv.virusTotal = player.uv.virusTotal.add(tmp.uv.clickables[31].gain.mul(0.005 * diff))
             player.uv.virusBest = player.uv.virusBest.max(player.uv.virus)
+            player.uv.times = player.uv.times.add(tmp.uv.clickables[31].resetgain.mul(0.005 * diff))
         }
     },
     tooltip() {
@@ -6268,7 +6269,10 @@ addLayer("uv", {
     milestones: {
         0: {
             requirementDescription() {return "1 Total UnBoosted Virus (1)"},
-            effectDescription() {return "Keep 1st 4 rows of Main US upgrades, 1st 11 and 16th US milestones, 'UnRecover' cooldown is "+formatTime(30)+".\nGain 0.5% of unboosted virus gain per second."},
+            effectDescription() {
+                return "Keep 1st 4 rows of Main US upgrades, 1st 11 and 16th US milestones, 'UnRecover' cooldown is "+formatTime(30)+
+                    ".Gain 0.5% of unboosted virus gain and reset times per second."
+            },
             done() { return player.uv.virusTotal.gte(1) }
         },
         1: {
